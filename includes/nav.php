@@ -6,12 +6,12 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#page2" data-theme="" data-icon="star" class="ui-btn-active">
+                            <a href="#trainees" data-theme="" data-icon="star" class="ui-btn-active">
                                 Trainees
                             </a>
                         </li>
                         <li>
-                            <a href="#page3" data-theme="" data-icon="check">
+                            <a href="#instructors" data-theme="" data-icon="check">
                                 Instructors
                             </a>
                         </li>
