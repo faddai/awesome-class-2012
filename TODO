@@ -1,7 +1,7 @@
 - y'all awesome and i never wanna forget any of you
 - show dummy data to people who are not logged in (agree?)
 - take members' data and use dob to determine their day of birth (Akwasi, Kwame, etc)
-
+- Non members can register but their data will be used as seed data
 
 Name
 DOB
@@ -11,6 +11,8 @@ phone
 interests
 a line or two about you
 password
+gender
+confirmed
 
 Pages
 ~~~~~~~
