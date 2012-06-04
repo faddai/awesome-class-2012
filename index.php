@@ -35,10 +35,10 @@
                         </strong>
                     </p>
                 </div>
-                <a data-role="button" data-inline="true" data-transition="fade" data-theme="b" href="#login" data-icon="arrow-r" data-iconpos="right">
+                <a data-role="button" data-inline="true" data-transition="fade" data-theme="b" href="login.php" data-icon="arrow-r" data-iconpos="right">
                     Login
                 </a>
-                <a data-role="button" data-inline="true" data-transition="fade" data-theme="e" href="#register" data-icon="arrow-r" data-iconpos="right">
+                <a data-role="button" data-inline="true" data-transition="fade" data-theme="e" href="register.php" data-icon="arrow-r" data-iconpos="right">
                     Register
                 </a>
             </div>
@@ -61,18 +61,39 @@
                 </div>
                 
                 <!-- A list of all trainees with their details -->
-                <div data-role="collapsible-set" data-theme="" data-content-theme="">
+                <div data-role="collapsible-set" data-theme="e" data-content-theme="d">
                     <div data-role="collapsible" data-collapsed="false">
-                        <h3>
-                            Tap me to hide/show content
-                        </h3>
-                        <a data-role="button" data-transition="fade" href="#trainees">
-                            Secret Button
-                        </a>
+                        <h3>Angela Yankey</h3>
+                        <div class="ui-grid-a">
+                            <div class="ui-block-a">
+                                <img src="trainees/angela.jpg" alt="Angela Yankey" title="" />
+                            </div>
+                            
+                            <div class="ui-block-b">
+                                details of member goes here
+                            </div>
+                        </div>
+                                             
                     </div>
+                    
+                    <div data-role="collapsible">
+                         <h3>Mona-Lisa Pokuaa</h3>
+                         <p>I am a second year computer science student</p>
+                    </div>
+                    
+                    <div data-role="collapsible">
+                        <h3>Angela Yankey</h3>
+                        <p>Hi, my name is Angela.</p>                       
+                    </div>
+                    
+                    <div data-role="collapsible">
+                         <h3>Mona-Lisa Pokuaa</h3>
+                         <p>I am a second year computer science student</p>
+                    </div>
+                    
                 </div>
                 <!--END A list of all trainees with their details -->
-                
+            </div><!--END content -->   
         </div>
         
         <!-- instructors page -->
@@ -111,117 +132,9 @@
             </div>
         </div>
         <!-- instructors page -->
+       
         
-        <!-- Login Page -->
-        <div data-role="page" id="login">
-            
-            <div data-role="header">
-                <h3>Login</h3>
-            </div>
-            
-            <?php include( "includes/nav.php" ); ?>
-                
-            <div data-role="content">
-                <form action="login.php" method="POST">
-                    <div data-role="fieldcontain">
-                        <label for="email">Email Address</label>
-                        <input type="email" name="email" id="email" placeholder="eg. awesome@gmail.com" />
-                        
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" />
-                        
-                        <input type="submit" name="submit" value="Login" data-theme="e" />
-                    </div>
-                </form>
-            </div>
-            
-        </div>
-        <!--END Login Page -->
-        
-        <!-- Registration Page -->
-        <div data-role="page" id="register">
-            
-            <div data-role="header">
-                <h1>Register</h1>
-            </div>
-            
-            
-            <?php include( "includes/nav.php" ); ?>
-         
-            
-            <div data-role="content">
-                <form action="register.php" method="POST">
-                    <div data-role="fieldcontain">
-                        
-                        <label for="fname">First Name</label>
-                        <input type="text" name="fname" id="fname" placeholder="" />
-                        
-                        <label for="lname">Last Name</label>
-                        <input type="text" name="lname" id="lname" placeholder="" />
-                        
-                        <label for="gender">Gender</label>
-                        <select name="gender" data-role="slider" id="gender">
-                            <option>Choose gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
-                        
-                        <!-- Date of Birth -->
-                       
-                            <fieldset data-role="controlgroup">
-                                <legend>Date of Birth:</legend>
-                            
-                                <label for="select-choice-month">Day</label>
-                                <select name="select-choice-month" id="select-choice-month">
-                                        <option>Month</option>
-                                        <option value="jan">January</option>
-                                        <!-- etc. -->
-                                </select>
-                            
-                                <label for="select-choice-day">Month</label>
-                                <select name="select-choice-day" id="select-choice-day">
-                                        <option>Day</option>
-                                        <option value="1">1</option>
-                                        <!-- etc. -->
-                                </select>
-                                
-                                <label for="select-choice-year">Year</label>
-                                <select name="select-choice-year" id="select-choice-year">
-                                        <option>Year</option>
-                                        <option value="2011">2011</option>
-                                        <!-- etc. -->
-                                </select>
-                            </fieldset>
-                    
-                        
-                        <!--END Date of Birth -->
-                        
-                        <label for="interests">Interests</label>
-                        <textarea name="interests" id="interests" placeholder="So that I can relate to you better"></textarea>
-                        
-                        <label for="bio">Who are you?</label>
-                        <textarea name="interests" id="interests" placeholder="A little info about you"></textarea>
-                        
-                        <label for="email">Email Address</label>
-                        <input type="email" name="email" id="email" placeholder="eg. awesome@gmail.com" />
-                        
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" name="phone" id="phone" placeholder="eg. 023202023" />
-                        
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" />
-                        
-                        <input type="submit" name="submit" value="Register" data-theme="e" />
-                    </div>
-                </form>
-            </div>
-            
-            <div data-role="footer">
-                <h1>mFriday / MWG Training, May 2012</h1>
-            </div>
-        </div>
-        <!-- Registration Page -->
-        
+       
         <script>
             //App custom javascript
         </script>

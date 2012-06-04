@@ -6,7 +6,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#trainees" data-theme="" data-icon="star" class="ui-btn-active">
+                            <a href="#trainees" data-theme="" data-icon="star"> <!-- class="ui-btn-active"> -->
                                 Trainees
                             </a>
                         </li>
