@@ -10,7 +10,7 @@
          
             
             <div data-role="content">
-                <form action="process_registration.php" method="POST">
+                <form action="process_registration.php" method="POST" data-ajax="false">
                     <div data-role="fieldcontain">
                         
                         <label for="fname">First Name</label>
@@ -27,7 +27,7 @@
                         
                         <!-- Date of Birth -->
                        
-                            <fieldset data-role="controlgroup">
+                            <fieldset data-role="controlgroup" data-type="horizontal">
                                 <legend>Date of Birth:</legend>
                             
                                 <label for="dob_day">Day</label>

@@ -9,7 +9,7 @@
             <?php include( "includes/nav.php" ); ?>
                 
             <div data-role="content">
-                <form action="process_login.php" method="POST">
+                <form action="process_login.php" method="POST" data-ajax="false">
                     <div data-role="fieldcontain">
                         <label for="email">Email Address</label>
                         <input type="email" name="email" id="email" placeholder="eg. awesome@gmail.com" />

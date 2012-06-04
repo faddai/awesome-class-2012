@@ -1,15 +1,15 @@
 <?php
-include("functions.php"); 
+include("includes/functions.php"); 
 
-$username = mysql_real_escape_string(
-            trim( $_POST['username'] ) );
+$email = mysql_real_escape_string(
+            trim( $_POST['email'] ) );
 $password = encrypt_password($_POST['password']);
 
 // query database
 // check if a match was found
 // redirect members only page
 $res = query("SELECT * from members where
-             username='$username' AND
+             email='$email' AND
              password='$password' limit 1");
 
 if( mysql_num_rows($res) === 1 ){

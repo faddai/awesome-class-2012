@@ -1,5 +1,5 @@
 <?php
-include( "functions.php" );
+include( "includes/functions.php" );
 
 $fname = $_POST['fname'];
 $lname = $_POST['lname'];
