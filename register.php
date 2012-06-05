@@ -21,8 +21,8 @@
                         
                         <label for="gender">Gender</label>
                         <select name="gender" data-role="slider" id="gender">
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
+                            <option value="1">Male</option>
+                            <option value="2">Female</option>
                         </select>
                         
                         <!-- Date of Birth -->
@@ -68,7 +68,7 @@
                         <input type="email" name="email" id="email" placeholder="eg. awesome@gmail.com" />
                         
                         <label for="phone">Phone Number</label>
-                        <input type="tel" name="phone" id="phone" placeholder="eg. 023202023" />
+                        <input type="tel" name="phone" id="phone" placeholder="eg. 023202023" size="10" />
                         
                         <label for="password">Password</label>
                         <input type="password" name="password" id="password" />
