@@ -19,7 +19,7 @@ $pix = mysql_real_escape_string("trainees/". strtolower($fname). ".jpg"); # use 
 
 // concantenate year, month and day into MySQL accepted format i.e. YYYY-MM-DD
 $dob = "$dob_year-$dob_month-$dob_day";
-$sql = "INSERT into members(fname,lname,gender,dob,interests,bio,email,phone,password,pix)
+$sql = "INSERT into members(fname,lname,gender_id,dob,interests,bio,email,phone,password,pix)
              values('$fname','$lname','$gender','$dob','$interests',
              '$bio', '$email', '$phone','$password','$pix')";
              
@@ -27,9 +27,12 @@ $sql = "INSERT into members(fname,lname,gender,dob,interests,bio,email,phone,pas
 $res = query($sql);
 
 if( $res ){
-    echo "Thank you for you registering.";
+    $url = base_url()."index.php";
+    echo "<h1>Thank you for you registering.</h1>";
+    echo "<a href=\"$url\">Click here to go back to welcome page</a>";
 } else{
-    echo "Sorry, we couldn't insert your data.";
+    echo "<h1>Sorry, we couldn't insert your data.</h1>";
+    echo "<a href=\"javascript: window.history.back()\">try again.</a>";
 }
 
 
