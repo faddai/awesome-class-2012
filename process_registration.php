@@ -23,12 +23,9 @@ $sql = "INSERT into members(fname,lname,gender,dob,interests,bio,email,phone,pas
              values('$fname','$lname','$gender','$dob','$interests',
              '$bio', '$email', '$phone','$password','$pix')";
              
-echo $sql; 
              
 $res = query($sql);
 
-var_dump($res);
-die();
 if( $res ){
     echo "Thank you for you registering.";
 } else{
