@@ -1,5 +1,6 @@
 <?php
 include("includes/functions.php"); 
+session_start();
 
 $email = mysql_real_escape_string(
             trim( $_POST['email'] ) );
@@ -13,7 +14,16 @@ $res = query("SELECT * from members where
              password='$password' limit 1");
 
 if( mysql_num_rows($res) === 1 ){
-    $url = "http://localhost/exercise/members.php?cur_user=$username";
+    
+    $data = array_shift( fetch($res) );
+    
+    foreach( $data as $k => $v ){
+        $_SESSION[$k] = $v;
+    }
+    
+    //echo "<pre>"; print_r($_SESSION); echo "</pre>"; die();    
+    
+    $url = base_url()."index.php#trainees";
     header("Location: $url");
 } else {
     echo "<h1>User does not exist</h1>";
