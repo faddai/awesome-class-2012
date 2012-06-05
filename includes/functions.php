@@ -32,4 +32,14 @@ function base_url(){
     return "http://localhost/awesome-class-2012/";
 }
 
+function get_kraa_day($dob){
+    
+    $kraa_day = "Unknown";    
+        
+    if( $dob !== "" ){
+        
+    }
+    return $kraa_day;
+}
+
 connect("localhost", "root", "project", "awesome_class");
