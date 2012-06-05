@@ -9,7 +9,7 @@ function connect($host, $user, $pass, $db){
     }
 }
 function query($sql){
-    $results = mysql_query($sql);
+    $results = mysql_query($sql) or die(mysql_error());
     return $results;
 }
 
@@ -28,4 +28,8 @@ function encrypt_password($password){
     return sha1($password);
 }
 
-connect("localhost", "root", "project", "awesome");
+function base_url(){
+    return "http://localhost/awesome-class-2012/";
+}
+
+connect("localhost", "root", "project", "awesome_class");
