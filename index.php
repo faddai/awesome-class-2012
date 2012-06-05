@@ -1,5 +1,7 @@
 <?php include( "includes/header.php" ) ?>
-        
+<?php include( "includes/functions.php" ) ?>
+
+        <?php session_start() ?>
         <!-- welcome page -->
         <div data-role="page" id="welcome">
             <div data-theme="a" data-role="header">
@@ -35,15 +37,19 @@
                         </strong>
                     </p>
                 </div>
-                <a data-role="button" data-inline="true" data-transition="fade" data-theme="b" href="login.php" data-icon="arrow-r" data-iconpos="right" data-rel="dialog">
+                <a data-role="button" data-inline="true" data-transition="fade" data-theme="b" href="login.php" data-icon="arrow-r" data-iconpos="right">
                     Login
                 </a>
-                <a data-role="button" data-inline="true" data-transition="fade" data-theme="e" href="register.php" data-icon="arrow-r" data-iconpos="right" data-rel="external">
+                <a data-role="button" data-inline="true" data-transition="fade" data-theme="e" href="register.php" data-icon="arrow-r" data-iconpos="right">
                     Register
                 </a>
             </div>
         </div><!--END of welcome page -->
         
+        <!--Trainees page -->
+        <?php
+            $trainees = fetch( query("SELECT DISTINCT * FROM members") );
+        ?>
         <div data-role="page" id="trainees">
             <div data-theme="a" data-role="header">
                 <h3>
@@ -52,7 +58,9 @@
                 <?php include( "includes/nav.php" ); ?>
             </div>
             <div data-role="content">
+            <?php //echo "<pre>"; print_r($_SESSION); echo "</pre>"; die(); ?>    
                 <div>
+                <h3>Hello <?php echo ucfirst( $_SESSION['fname'] ) ?>,</h3>
                     <p>
                         <b>
                             These are the awesome people we enrolled for the training.
@@ -62,34 +70,41 @@
                 
                 <!-- A list of all trainees with their details -->
                 <div data-role="collapsible-set" data-theme="e" data-content-theme="d">
-                    <div data-role="collapsible" data-collapsed="false">
-                        <h3>Angela Yankey</h3>
+                <?php foreach( $trainees as $trainee ): ?>
+                <?php $name = ucwords( $trainee['fname']. " " .$trainee['lname'] ); ?>
+                    <div data-role="collapsible" <?php echo ( $_SESSION['member_id'] === $trainee['member_id'] ) ? 'data-collapsed="false"' : '' ?>>
+                        <h3><?php echo $name ?></h3>
                         <div class="ui-grid-a">
                             <div class="ui-block-a">
-                                <img src="trainees/angela.jpg" alt="Angela Yankey" title="" />
+                                <img src="<?php echo $trainee['pix'] ?>" alt="<?php echo $name ?>" title="A picture of <?php echo $name ?>" />
                             </div>
                             
                             <div class="ui-block-b">
-                                details of member goes here
+                                <div>
+                                    <strong>Your Kraa Day: </strong><?php echo get_kraa_day($trainee['dob']) ?>
+                                </div>                                            
+                                <div>
+                                    <strong>Bio: </strong><?php echo $trainee['bio'] ?>
+                                </div>                                            
+                                <div>
+                                    <strong>Interests: </strong><?php echo $trainee['interests'] ?>
+                                </div>
+                                
+                                <div>
+                                    <strong>Email: </strong><?php echo $trainee['email'] ?>
+                                </div>                                            
+                                <div>
+                                    <strong>Phone #: </strong><?php echo $trainee['phone'] ?>
+                                </div>                                            
+                                <div>
+                                    <strong>Gender: </strong><?php echo $trainee['gender'] ?>
+                                </div>                                
+                                
                             </div>
                         </div>
                                              
                     </div>
-                    
-                    <div data-role="collapsible">
-                         <h3>Mona-Lisa Pokuaa</h3>
-                         <p>I am a second year computer science student</p>
-                    </div>
-                    
-                    <div data-role="collapsible">
-                        <h3>Angela Yankey</h3>
-                        <p>Hi, my name is Angela.</p>                       
-                    </div>
-                    
-                    <div data-role="collapsible">
-                         <h3>Mona-Lisa Pokuaa</h3>
-                         <p>I am a second year computer science student</p>
-                    </div>
+                <?php endforeach ?>
                     
                 </div>
                 <!--END A list of all trainees with their details -->
