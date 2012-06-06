@@ -1,6 +1,5 @@
 <?php include( "includes/header.php" ) ?>
 <?php include( "includes/functions.php" ) ?>
-
         <?php session_start() ?>
         <!-- welcome page -->
         <div data-role="page" id="welcome">
@@ -48,7 +47,13 @@
         
         <!--Trainees page -->
         <?php
-            $trainees = fetch( query("SELECT DISTINCT * FROM members") );
+        
+            $sql = "SELECT DISTINCT m.*, g.* FROM members m
+                    JOIN gender g ON ( g.gender_id = m.gender_id )";
+                    
+            //$gh_names = fetch( query( "SELECT * FROM gh_names" ) );
+            
+            $trainees = fetch( query( $sql ) );
         ?>
         <div data-role="page" id="trainees">
             <div data-theme="a" data-role="header">
@@ -58,9 +63,9 @@
                 <?php include( "includes/nav.php" ); ?>
             </div>
             <div data-role="content">
-            <?php //echo "<pre>"; print_r($_SESSION); echo "</pre>"; die(); ?>    
+             
                 <div>
-                <h3>Hello <?php echo ucfirst( $_SESSION['fname'] ) ?>,</h3>
+                <h3>Hello<?php echo isset( $_SESSION['fname'] ) ? " ,".ucfirst( $_SESSION['fname'] ) : ',' ?></h3>
                     <p>
                         <b>
                             These are the awesome people we enrolled for the training.
@@ -69,7 +74,7 @@
                 </div>
                 
                 <!-- A list of all trainees with their details -->
-                <div data-role="collapsible-set" data-theme="e" data-content-theme="d">
+                <div data-role="collapsible-set" data-theme="b" data-content-theme="c">
                 <?php foreach( $trainees as $trainee ): ?>
                 <?php $name = ucwords( $trainee['fname']. " " .$trainee['lname'] ); ?>
                     <div data-role="collapsible" <?php echo ( $_SESSION['member_id'] === $trainee['member_id'] ) ? 'data-collapsed="false"' : '' ?>>
@@ -129,13 +134,49 @@
                 </div>
                 <ul data-role="listview" data-divider-theme="b" data-inset="true">
                     <li data-role="list-divider" role="heading">
-                        Divider
+                        SMS Apps Development
                     </li>
                     <li data-theme="c">
                         <a href="#" data-transition="slide">
-                            None of this is your business
+                            Nii Okai Quaye
                         </a>
                     </li>
+                    <li data-role="list-divider" role="heading">
+                        User Interaction / User Experience
+                    </li>
+                    <li>
+                        <a href="#" data-iconpos="down">
+                            Franco Papeschi
+                        </a>
+                    </li>
+
+                    <li data-role="list-divider" role="heading">
+                        Voice Apps Development & Mobile Business
+                    </li>
+                    <li>
+                        <a href="#">
+                            Alfred Anyan
+                        </a>
+                    </li>
+                    
+                    <li data-role="list-divider" role="heading">
+                        Mobile Web
+                    </li>
+                    <li>
+                        <a href="#francis" data-rel="dialog">
+                            Francis Addai
+                        </a>
+                    </li>
+                    
+                    <li data-role="list-divider" role="heading">
+                        Mobile Apps Development
+                    </li>
+                    <li>
+                        <a href="" data-rel="dialog">
+                            Eyram Tawiah
+                        </a>
+                    </li>
+                    
                 </ul>
                 <div>
                     <h3>
@@ -148,6 +189,15 @@
         </div>
         <!-- instructors page -->
        
+       <div data-role="page" id="francis">
+            <div data-role="header">
+                <h1>Profile of Francis Addai</h1>
+            </div>       
+        
+            <div data-role="content">
+                hello people, I am awesome!
+            </div>
+       </div>
         
        
         <script>
