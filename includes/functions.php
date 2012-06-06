@@ -32,14 +32,16 @@ function base_url(){
     return "http://localhost/awesome-class-2012/";
 }
 
-function get_kraa_day($dob){
+function get_kraa_day( $name = '', $dob = NULL, $gender = NULL ){
     
     $kraa_day = "Unknown";    
-        
+    $sql = "SELECT name from gh_names where ";
+    
     if( $dob !== "" ){
         
     }
     return $kraa_day;
 }
+
 
 connect("localhost", "root", "project", "awesome_class");
