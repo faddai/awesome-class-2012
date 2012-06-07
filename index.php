@@ -86,7 +86,7 @@
                             
                             <div class="ui-block-b">
                                 <div>
-                                    <strong>Your Kraa Day: </strong><?php echo get_kraa_day($trainee['dob']) ?>
+                                    <strong>Your Kraa Name: </strong><?php echo get_kraa_name($trainee['dob'], $trainee['gender']) ?>
                                 </div>                                            
                                 <div>
                                     <strong>Bio: </strong><?php echo $trainee['bio'] ?>
