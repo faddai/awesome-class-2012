@@ -1,3 +1,4 @@
+<?php //session_start() ?>
 <div data-role="navbar" data-iconpos="top">
                     <ul>
                         <li>
@@ -15,5 +16,12 @@
                                 Instructors
                             </a>
                         </li>
+                    <?php if(isset($_SESSION['member_id'])): ?>                        
+                        <li>
+                            <a href="logout.php" data-theme="b" data-icon="close" data-ajax="false">
+                                Logout
+                            </a>
+                        </li>
+                    <?php endif ?>
                     </ul>
                 </div>
