@@ -17,7 +17,7 @@ function query($sql){
 function fetch($results){
     $tmp = array();
     if ($results){
-        while($row = mysql_fetch_array($results)){
+        while($row = mysql_fetch_assoc($results)){
             $tmp[] = $row;
         }
     }
@@ -32,15 +32,45 @@ function base_url(){
     return "http://localhost/awesome-class-2012/";
 }
 
-function get_kraa_day( $name = '', $dob = NULL, $gender = NULL ){
+function get_kraa_name( $dob = NULL, $gender = NULL ){
     
-    $kraa_day = "Unknown";    
-    $sql = "SELECT name from gh_names where ";
     
-    if( $dob !== "" ){
-        
+    $names = array(
+                'male' => array(
+                              'sunday' => 'akwasi',
+                              'monday' => 'kwadwo',
+                              'tuesday' => 'kwabena',
+                              'wednesday' => 'kwaku',
+                              'thursday' => 'yaw',
+                              'friday' => 'kofi',
+                              'saturday' => 'kwame'
+                              ),
+               'female' => array(
+                              'sunday' => 'akosua',
+                              'monday' => 'adwoa',
+                              'tuesday' => 'abena',
+                              'wednesday' => 'akua',
+                              'thursday' => 'yaa',
+                              'friday' => 'afua',
+                              'saturday' => 'ama'
+                              )
+            );
+    if ( !is_null($dob) || !is_null($gender)){
+        $kraa_name = "unknown";
+        $dobTS = strtotime($dob);
+        // the names array is all lowercase
+        $day_of_birth = strtolower(date('l', $dobTS)); 
+        $str = date("jS \of F Y", $dobTS);
+        $gender = strtolower($gender);
+        foreach ($names[$gender] as $k => $v){
+            
+            if ($k == $day_of_birth){
+                $kraa_name = ucfirst( $v );
+                break;
+            }
+        }
     }
-    return $kraa_day;
+    return $kraa_name;
 }
 
 
