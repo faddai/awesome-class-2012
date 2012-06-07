@@ -60,8 +60,8 @@ function get_kraa_name( $dob = NULL, $gender = NULL ){
         $dobTS = strtotime($dob);
         // the names array is all lowercase
         $day_of_birth = strtolower(date('l', $dobTS)); 
-        $str = date("jS \of F Y", $dobTS);
         $gender = strtolower($gender);
+        
         foreach ($names[$gender] as $k => $v){
             
             if ($k == $day_of_birth){

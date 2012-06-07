@@ -26,7 +26,7 @@ if( mysql_num_rows($res) === 1 ){
     $url = base_url()."index.php#trainees";
     header("Location: $url");
 } else {
-    echo "<h1>User does not exist</h1>";
+    echo "<h1>User does not exist.</h1>";
 }
 
              
