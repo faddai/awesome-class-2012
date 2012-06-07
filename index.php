@@ -5,7 +5,7 @@
         <div data-role="page" id="welcome">
             <div data-theme="a" data-role="header">
                 <h3>
-                    MWG Training 2012
+                    Welcome
                 </h3>
                 <?php include("includes/nav.php") ?>
             </div>
@@ -47,13 +47,24 @@
         
         <!--Trainees page -->
         <?php
-        
+            
             $sql = "SELECT DISTINCT m.*, g.* FROM members m
-                    JOIN gender g ON ( g.gender_id = m.gender_id )";
+                    JOIN gender g ON ( g.gender_id = m.gender_id ) where confirmed = 1";
+                    
+            $junk = "SELECT DISTINCT m.*, g.* FROM members m
+                    JOIN gender g ON ( g.gender_id = m.gender_id ) where confirmed = 0";
+                    
+            if(isset($_SESSION['member_id'])){
+                $query = $sql;
+                $msg = "These are the awesome people we enrolled for the training.";
+            } else {
+                $query = $junk;
+                $msg = "We're sorry we couldn't show you information on the real trainees. There are quite personal and sensitive information in there. The data below is for demo purposes only.";
+            }
                     
             //$gh_names = fetch( query( "SELECT * FROM gh_names" ) );
             
-            $trainees = fetch( query( $sql ) );
+            $trainees = fetch( query( $query ) );
         ?>
         <div data-role="page" id="trainees">
             <div data-theme="a" data-role="header">
@@ -62,14 +73,16 @@
                 </h3>
                 <?php include( "includes/nav.php" ); ?>
             </div>
+            
             <div data-role="content">
              
                 <div>
-                <h3>Hello<?php echo isset( $_SESSION['fname'] ) ? " ,".ucfirst( $_SESSION['fname'] ) : ',' ?></h3>
+                <h3>Hello<?php echo isset( $_SESSION['fname'] ) ? ", ".ucfirst( $_SESSION['fname'] ) : ',' ?></h3>
                     <p>
                         <b>
-                            These are the awesome people we enrolled for the training.
+                            <?php echo $msg; ?>
                         </b>
+                        
                     </p>
                 </div>
                 
@@ -85,9 +98,14 @@
                             </div>
                             
                             <div class="ui-block-b">
-                                <div>
-                                    <strong>Your Kraa Name: </strong><?php echo get_kraa_name($trainee['dob'], $trainee['gender']) ?>
-                                </div>                                            
+                            <?php if( isset($_SESSION['member_id']) && $_SESSION['member_id']  === $trainee['member_id']): ?>
+                                <button data-role="button" data-inline="true" data-theme="e">Hey <?php echo get_kraa_name($trainee['dob'], $trainee['gender']) ?></button>
+                            <?php else: ?>
+                                <button>
+                                GH Name: <?php echo get_kraa_name($trainee['dob'], $trainee['gender']) ?></button>
+                                <?php endif ?>
+                                    
+                                                                          
                                 <div>
                                     <strong>Bio: </strong><?php echo $trainee['bio'] ?>
                                 </div>                                            
@@ -113,10 +131,16 @@
                     
                 </div>
                 <!--END A list of all trainees with their details -->
-            </div><!--END content -->   
+            </div><!--END content -->
         </div>
         
         <!-- instructors page -->
+        
+        <?php
+            $sql = "SELECT * FROM sessions s JOIN instructors i ON ( s.instructor_id = i.instructor_id )"; 
+            $training_sessions = fetch( query( $sql ) );
+        ?>
+        
         <div data-role="page" id="instructors">
             <div data-theme="a" data-role="header">
                 <h3>
@@ -133,72 +157,41 @@
                     </p>
                 </div>
                 <ul data-role="listview" data-divider-theme="b" data-inset="true">
+                
+                <?php foreach( $training_sessions as $session ): ?>
+                <?php $instructor = ucwords($session['fname']. " ". $session['lname']); ?>
                     <li data-role="list-divider" role="heading">
-                        SMS Apps Development
+                        <?php echo $session['title'] ?>
                     </li>
                     <li data-theme="c">
-                        <a href="#" data-transition="slide">
-                            Nii Okai Quaye
-                        </a>
-                    </li>
-                    <li data-role="list-divider" role="heading">
-                        User Interaction / User Experience
-                    </li>
-                    <li>
-                        <a href="#" data-iconpos="down">
-                            Franco Papeschi
-                        </a>
-                    </li>
-
-                    <li data-role="list-divider" role="heading">
-                        Voice Apps Development & Mobile Business
-                    </li>
-                    <li>
-                        <a href="#">
-                            Alfred Anyan
+                        <a href="#instructor-<?php echo $session['instructor_id'] ?>" data-rel="dialog">
+                            <?php echo $instructor ?>
                         </a>
                     </li>
                     
-                    <li data-role="list-divider" role="heading">
-                        Mobile Web
-                    </li>
-                    <li>
-                        <a href="#francis" data-rel="dialog">
-                            Francis Addai
-                        </a>
-                    </li>
+                    <div data-role="page" id="instructor-<?php echo $session['instructor_id'] ?>">
+                        <div data-role="header">
+                            <h1>Profile of <?php echo $session['fname'] ?></h1>
+                        </div>       
                     
-                    <li data-role="list-divider" role="heading">
-                        Mobile Apps Development
-                    </li>
-                    <li>
-                        <a href="" data-rel="dialog">
-                            Eyram Tawiah
-                        </a>
-                    </li>
+                        <div data-role="content">
+                            <?php echo $session['bio'] ?>
+                        </div>
+                        
+                        <div data-role="footer">
+                            <h1>Instructor</h1>
+                        </div>
+                   </div>                    
                     
+                <?php endforeach ?>
                 </ul>
                 <div>
-                    <h3>
-                        <strong>
-                            These folks are awesome and they have all made the training informational and also fun.
-                        </strong>
-                    </h3>
+                    <strong>These folks are awesome and they have all made the training informational and also fun.</strong>
                 </div>
             </div>
         </div>
         <!-- instructors page -->
-       
-       <div data-role="page" id="francis">
-            <div data-role="header">
-                <h1>Profile of Francis Addai</h1>
-            </div>       
-        
-            <div data-role="content">
-                hello people, I am awesome!
-            </div>
-       </div>
-        
+
        
         <script>
             //App custom javascript
